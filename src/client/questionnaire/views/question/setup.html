@@ -1,0 +1,26 @@
+<section class="row" ng-show="status != 200">
+  <div class="col-md-offset-4 col-md-3">
+    <div class="alert alert-danger" role="alert" ng-show="status==401">User not found</div>
+    <div class="alert alert-danger" role="alert" ng-show="status==500">Unexpected error</div>
+  </div>
+</section>
+<section class="row">
+  <div class="col-md-12">
+    <h3>Question Setup</h3>
+    <hr>
+  </div>
+</section>
+<section class="row">
+  <div class="col-md-12">
+    <form name="questionForm" novalidate="novalidate" ng-submit="save()" role="form">
+      <div class="form-group" ng-class="{ 'has-error': submitted && questionForm.text.$invalid }">
+        <label class="control-label">Text</label>
+        <div text-angular ng-model="question.text"></div>
+        <p ng-show="submitted && questionForm.text.$error.required" class="help-block">Required</p>
+      </div>
+      <br>
+      <a class="btn btn-default" ui-sref="candidate.questionnaire.setup($stateParams)"><i class="fa fa-arrow-left"></i> Cancel</a>
+      <button type="submit" class="btn btn-primary">Save</button>
+    </form>
+  </div>
+</section>

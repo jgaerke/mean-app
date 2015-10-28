@@ -1,0 +1,27 @@
+<div class="row">
+  <div class="col-md-12">
+    <h3 ng-if="!$stateParams.id">Add Candidate</h3>
+    <h3 ng-if="$stateParams.id">Update Candidate</h3>
+    <hr>
+    <section class="row" ng-if="status != 200">
+      <div class="col-md-4">
+        <div class="alert alert-danger" role="alert" ng-show="status==401">User not found</div>
+        <div class="alert alert-danger" role="alert" ng-show="status==500">Unexpected error</div>
+      </div>
+    </section>
+    <section class="row">
+      <div class="col-md-4">
+        <form name="candidateForm" novalidate="novalidate" ng-submit="save()" role="form">
+          <div class="form-group" ng-class="{ 'has-error': submitted && candidateForm.email.$invalid }">
+            <label class="control-label" for="email">Email</label>
+            <input class="form-control" type="email" id="email" name="email" ng-model="candidate.email" required/>
+            <p ng-show="submitted && candidateForm.email.$error.required" class="help-block">Required</p>
+            <p ng-show="submitted && candidateForm.email.$error.email" class="help-block">Invalid format</p>
+          </div>
+          <button type="submit" class="btn btn-primary" ng-if="!$stateParams.id">Add</button>
+          <button type="submit" class="btn btn-primary" ng-if="$stateParams.id">Update</button>
+        </form>
+      </div>
+    </section>
+  </div>
+</div>

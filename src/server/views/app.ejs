@@ -1,0 +1,29 @@
+<nav class="navbar navbar-inverse navbar-fixed-top" ng-controller="accountCtrl as account">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" ui-sref="home">Interview App</a>
+    </div>
+    <div class="navbar-collapse collapse" collapse="!navVisible">
+      <ul class="nav navbar-nav navbar-right">
+        <li ui-sref-active="active"  ng-show="account.authenticated">
+          <a ui-sref="candidates.inprogress">Candidates</a>
+        </li>
+        <li ui-sref-active="active" ng-show="!account.authenticated"><a
+              ui-sref="login">Login</a></li>
+        <li ui-sref-active="active" ng-show="account.authenticated"><a
+              ng-click="account.logout()" ui-sref="home">Logout</a></li>
+        <li ui-sref-active="active" ng-show="!account.authenticated"><a
+              ui-sref="register">Create Account</a></li>
+      </ul>
+    </div>
+    <!--/.nav-collapse -->
+  </div>
+</nav>
+
+<div ui-view class="container"></div>

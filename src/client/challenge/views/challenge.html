@@ -1,0 +1,14 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="panel panel-default">
+      <div class="panel-body"
+           ng-click="$state.go('candidate.challenge.setup', $stateParams)"
+           ng-mouseover="editable = true"
+           ng-mouseleave="editable = false">
+        <i class="fa fa-edit pull-right" ng-show="editable" ng-hide="!editable"></i>
+
+        Challenge
+      </div>
+    </div>
+  </div>
+</div>

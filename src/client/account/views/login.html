@@ -1,0 +1,30 @@
+<section class="row" ng-if="account.status != 200">
+  <div class="col-md-offset-4 col-md-3">
+    <div class="alert alert-danger" role="alert" ng-show="account.status==401">Invalid credentails</div>
+    <div class="alert alert-danger" role="alert" ng-show="account.status==500">Unexpected error</div>
+  </div>
+</section>
+<section class="row">
+  <div class="col-xs-offset-0 col-sm-offset-0 col-md-offset-4 col-md-3">
+    <form name="account.form" novalidate="novalidate" ng-submit="account.login()" role="form">
+      <div class="form-group" ng-class="{ 'has-error': account.submitted && account.form.email.$invalid }">
+        <label class="control-label" for="email">Email</label>
+        <input class="form-control" type="email" id="email" name="email" ng-model="account.details.email" required/>
+        <div ng-if="account.submitted" ng-messages="account.form.email.$error" multiple="false">
+          <div ng-message="required" class="help-block">Required</div>
+          <div ng-message="email" class="help-block">Invalid format</div>
+        </div>
+      </div>
+      <div class="form-group" ng-class="{'has-error':account.submitted && account.form.password.$invalid}">
+        <label class="control-label" for="password">Password</label>
+        <input class="form-control" type="password" id="password" name="password" ng-model="account.details.password"
+               required/>
+        <p ng-show="account.submitted && account.form.password.$error.required" class="help-block">Required</p>
+      </div>
+      <div class="checkbox">
+        <label><input type="checkbox" name="rememberMe" ng-model="account.details.rememberMe" checked/> Remember me</label>
+      </div>
+      <button type="submit" class="btn btn-primary">Sign In</button>
+    </form>
+  </div>
+</section>

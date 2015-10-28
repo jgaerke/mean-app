@@ -1,0 +1,48 @@
+<div class="row">
+  <div class="col-md-12">
+
+    <h3>Instructions</h3>
+    <hr>
+
+    <div text-angular ng-model="challenge"></div>
+
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+
+    <h3>Code</h3>
+    <hr>
+    <br>
+
+    <div ui-codemirror="editorOptions" ng-model="editorContent"></div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+
+    <h3>Valid Result(s)</h3>
+    <hr>
+    <ul class="list-group">
+      <li class="list-group-item">
+        0
+        <i class="fa fa-remove pull-right"></i>
+      </li>
+      <li class="list-group-item">
+        1,2,3,4
+        <i class="fa fa-remove pull-right" ng-click="selected = true"></i>
+      </li>
+    </ul>
+    <form name="validResultForm" novalidate="novalidate" role="form" class="form-inline">
+      <div class="form-group">
+        <input class="form-control" type="text" id="value" name="value" ng-model="value" required
+               placeholder="Enter valid result"/>
+        <p ng-show="submitted && validResultForm.value.$error.required" class="help-block">Required</p>
+      </div>
+      <button type="submit" class="btn btn-sm btn-default">Add</button>
+    </form>
+    <br><br>
+    <a class="btn btn-default" ui-sref="candidate.challenge($stateParams)"><i class="fa fa-arrow-left"></i> Cancel</a>
+    <a class="btn btn-primary" ui-sref="candidate.challenge($stateParams)"><i class="fa fa-floppy-o"></i> Save</a>
+  </div>
+</div>

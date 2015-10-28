@@ -1,0 +1,57 @@
+<section class="row" ng-if="account.status != 200">
+  <div class="col-md-offset-4 col-md-3">
+    <div class="alert alert-danger" role="alert" ng-show="account.status==409">Email taken</div>
+    <div class="alert alert-danger" role="alert" ng-show="account.status==500">Unexpected error</div>
+  </div>
+</section>
+<section id="register" class="row">
+  <div class="col-xs-offset-0 col-sm-offset-0 col-md-offset-4 col-md-3">
+    <form name="account.form" novalidate="novalidate" ng-submit="account.create()" role="form">
+      <div class="form-group"
+           ng-class="{'has-error':(account.submitted && account.form.email.$invalid) || account.form.$error.available }">
+        <label class="control-label" for="email">Email</label>
+        <input class="form-control" type="email" id="email" name="email" ng-model="account.details.email" required/>
+        <div ng-if="account.submitted" ng-messages="account.form.email.$error" multiple="false">
+          <div ng-message="required" class="help-block">Required</div>
+          <div ng-message="email" class="help-block">Invalid format</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="control-label" for="first">Foo</label>
+      </div>
+      <div class="form-group" ng-class="{'has-error':account.submitted && account.form.first.$invalid}">
+        <label class="control-label" for="first">First</label>
+        <input class="form-control" type="text" id="first" name="first" ng-model="account.details.first" required
+               available="true"/>
+        <p ng-show="account.submitted && account.form.first.$error.required" class="help-block">Required</p>
+      </div>
+      <div class="form-group" ng-class="{'has-error':account.submitted && account.form.last.$invalid}">
+        <label class="control-label" for="last">Last</label>
+        <input class="form-control" type="text" id="last" name="last" ng-model="account.details.last" required
+               available="true"/>
+        <p ng-show="account.submitted && account.form.last.$error.required" class="help-block">Required</p>
+      </div>
+      <div class="form-group" ng-class="{'has-error':account.submitted && account.form.password.$invalid}">
+        <label class="control-label" for="password">Password</label>
+        <input class="form-control" type="password" id="password" name="password" ng-model="account.details.password"
+               required ng-change="compare()"/>
+        <p ng-show="account.submitted && account.form.password.$error.required" class="help-block">Required</p>
+      </div>
+      <div class="form-group" ng-class="{'has-error':account.submitted && account.form.passwordConfirm.$invalid}">
+        <label class="control-label" for="passwordConfirm">Confirm your password</label>
+        <input class="form-control" type="password" id="passwordConfirm" name="passwordConfirm"
+               ng-model="account.details.passwordConfirm" required
+               ui-validate="{compare : '!account.passwordsMatch($value)' }"/>
+        <div ng-if="account.submitted" ng-messages="account.form.passwordConfirm.$error" multiple="false">
+          <div ng-message="required" class="help-block">Required</div>
+          <div ng-message="compare" class="help-block">Does not match</div>
+        </div>
+      </div>
+      <div class="checkbox">
+        <label><input type="checkbox" name="rememberMe" ng-model="account.details.rememberMe" checked/> Remember
+          me</label>
+      </div>
+      <button type="submit" class="btn btn-primary">Create Account</button>
+    </form>
+  </div>
+</section>

@@ -1,0 +1,47 @@
+<section class="row" ng-show="status != 200">
+  <div class="col-md-offset-4 col-md-3">
+    <div class="alert alert-danger" role="alert" ng-show="status==401">User not found</div>
+    <div class="alert alert-danger" role="alert" ng-show="status==500">Unexpected error</div>
+  </div>
+</section>
+<section class="row">
+  <div class="col-md-12">
+    <h3>Questionnaire Setup</h3>
+    <hr>
+  </div>
+</section>
+<section class="row">
+  <div class="col-md-6">
+    <form name="questionnaireForm" novalidate="novalidate" ng-submit="save()" role="form">
+      <div class="form-group" ng-class="{ 'has-error': submitted && questionnaireForm.name.$invalid }">
+        <label class="control-label" for="name">Name</label>
+        <input class="form-control" type="text" id="name" name="name" ng-model="questionnaire.name" required/>
+        <p ng-show="submitted && questionnaireForm.name.$error.required" class="help-block">Required</p>
+      </div>
+      <div class="form-group" ng-class="{'has-error':submitted && questionnaireForm.description.$invalid}">
+        <label class="control-label" for="description">Description</label>
+        <textarea class="form-control" id="description" name="description" ng-model="questionnaire.description"
+                   required></textarea>
+        <p ng-show="submitted && questionnaireForm.description.$error.required" class="help-block">Required</p>
+      </div>
+      <div class="form-group" ng-class="{'has-error':submitted && questionnaireForm.description.$invalid}">
+        <label class="control-label" for="description">Questions</label>
+        <ul class="list-group">
+          <li class="list-group-item" ng-if="questionnaire.questions.length">
+            What is the difference between private and public?
+            <ul class="list-inline pull-right">
+              <li><a href="#"><i class="fa fa-pencil-square-o"></i></a></li>
+              <li><a href="#"><i class="fa fa-trash-o"></i></a></li>
+            </ul>
+          </li>
+          <li class="list-group-item" ng-if="!questionnaire.questions.length">
+            No questions added yet. Click <a ui-sref="candidate.questionnaire.setup.question(withStateParams({ questionId: -1 }))">here</a> to get started.
+          </li>
+        </ul>
+      </div>
+      <a class="btn btn-default" ui-sref="candidate.summary($stateParams)"><i class="fa fa-arrow-left"></i> Cancel</a>
+      <button type="button" class="btn btn-default" ng-click="addQuestion()">Add Questions</button>
+      <button type="submit" class="btn btn-primary">Save</button>
+    </form>
+  </div>
+</section>

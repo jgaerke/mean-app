@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="ia">
+<head>
+  <title>Interview App</title>
+
+  <!-- Viewport mobile tag for sensible mobile support -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <base href="/app/">
+
+  <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+
+  <link rel="stylesheet" href="/static/css/application.min.css">
+</head>
+
+<body>
+
+<%- body %>
+
+<!--SCRIPTS-->
+<script src="/libs/angular.js"></script>
+<script src="/libs/angular-ui-router.js"></script>
+<script src="/libs/ui-bootstrap.js"></script>
+<script src="/libs/ui-bootstrap-tpls.js"></script>
+<script src="/libs/angular-messages.js"></script>
+<script src="/libs/angular-sanitize.js"></script>
+<script src="/libs/select.js"></script>
+<script src="/libs/ui-utils.js"></script>
+<script src="/Namespace.js"></script>
+<script src="/Class.js"></script>
+<script src="/Module.js"></script>
+<script src="/App.js"></script>
+<script src="/account/AccountController.js"></script>
+<script src="/account/AccountService.js"></script>
+<script src="/candidate/CandidateController.js"></script>
+<script src="/candidates/CandidatesController.js"></script>
+<script src="/challenge/ChallengeController.js"></script>
+<script src="/home/HomeController.js"></script>
+<script src="/questionnaire/QuestionnaireController.js"></script>
+<script src="/services/Api.js"></script>
+<!--SCRIPTS END-->
+
+<script>
+  var app = new ia.App(angular, ia, <%=authenticated%>);
+  app.run();
+</script>
+</body>
+</html>
